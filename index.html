@@ -30,9 +30,27 @@
         var dist = turf.distance(ky_centroid, oh_centroid, 'miles');
         var mid = turf.midpoint(ky_centroid, oh_centroid);
 
+        var muh_line = {
+          "type": "GeometryCollection",
+          "geometries": [
+            { "type": "LineString",
+              "coordinates": [
+                [
+                  ky_centroid.geometry.coordinates[0],
+                  ky_centroid.geometry.coordinates[1]
+                ],
+                [
+                  oh_centroid.geometry.coordinates[0],
+                  oh_centroid.geometry.coordinates[1]
+                ]
+              ]
+            }
+          ]
+        }
+
         var features = {
           "type": "FeatureCollection",
-          "features": [oh, ky, ky_centroid, oh_centroid]
+          "features": [oh, ky, ky_centroid, oh_centroid, muh_line]
         };
 
         L.geoJson(features).addTo(map);
