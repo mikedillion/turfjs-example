@@ -64,10 +64,13 @@
           }
         };
 
-        var popup = L.popup().
-                      setLatLng(latlng).
-                      setContent("Distance: " + dist + " miles").
-                      addTo(map);
+        var popup = L.popup().setLatLng(latlng)
+        if ( turf.inside(marker, ky) ) {
+          popup.setContent("Inside KY. <br/> Distance: " + dist + " miles")
+        }
+        else {
+          popup.setContent("Inside OH. <br/> Distance: " + dist + " miles")
+        }
 
         var features = {
           "type": "FeatureCollection",
@@ -75,6 +78,7 @@
         };
 
         L.geoJson(features).addTo(map);
+        popup.addTo(map);
       });
     });
 
