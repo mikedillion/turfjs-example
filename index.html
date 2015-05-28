@@ -28,6 +28,7 @@
         var oh_centroid = turf.centroid(oh);
 
         var dist = turf.distance(ky_centroid, oh_centroid, 'miles');
+        var mid = turf.midpoint(ky_centroid, oh_centroid);
 
         var features = {
           "type": "FeatureCollection",
