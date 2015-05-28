@@ -21,6 +21,11 @@
   <script>
     var map = L.map('map', {center: [36.924373, -84.100279], zoom: 7});
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(map);
+
+    $.getJSON("KY.geojson", function(ky) {
+      L.geoJson(ky).addTo(map);
+    });
+
   </script>
 </body>
 </html>
