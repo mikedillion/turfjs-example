@@ -48,6 +48,27 @@
           ]
         }
 
+        var latlng = L.latLng(
+          mid.geometry.coordinates[1],
+          mid.geometry.coordinates[0]
+        );
+
+        var marker = {
+          "type": "Feature",
+          "properties": {
+            "marker-color": "#0f0"
+          },
+          "geometry": {
+            "type": "Point",
+            "coordinates": [ latlng.lng, latlng.lat]
+          }
+        };
+
+        var popup = L.popup().
+                      setLatLng(latlng).
+                      setContent("Distance: " + dist + " miles").
+                      addTo(map);
+
         var features = {
           "type": "FeatureCollection",
           "features": [oh, ky, ky_centroid, oh_centroid, muh_line]
