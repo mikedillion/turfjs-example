@@ -23,14 +23,17 @@
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(map);
 
     $.getJSON("KY.geojson", function(ky) {
-      var ky_centroid = turf.centroid(ky);
+      $.getJSON("OH.geojson", function(oh) {
+        var ky_centroid = turf.centroid(ky);
+        var oh_centroid = turf.centroid(oh);
 
-      var features = {
-        "type": "FeatureCollection",
-        "features": [ky, ky_centroid]
-      };
+        var features = {
+          "type": "FeatureCollection",
+          "features": [oh, ky, ky_centroid, oh_centroid]
+        };
 
-      L.geoJson(features).addTo(map);
+        L.geoJson(features).addTo(map);
+      });
     });
 
   </script>
